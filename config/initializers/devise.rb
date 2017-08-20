@@ -248,7 +248,8 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
+  info_fields: 'email,first_name,last_name,link'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
