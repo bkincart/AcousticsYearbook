@@ -19,24 +19,28 @@ RSpec.describe User, type: :model do
   end
 
   describe "#create_from_omniauth" do
-    let(:valid_auth) { {
-      "provider"=>"facebook",
-      "uid"=> SecureRandom.hex,
-      "info"=> {
-        "email"=>"alfred@bc.edu",
-        "first_name"=>"Alfred",
-        "last_name"=>"Alien"
+    let(:valid_auth) {
+      {
+        "provider"=>"facebook",
+        "uid"=> SecureRandom.hex,
+        "info"=> {
+          "email"=>"alfred@bc.edu",
+          "first_name"=>"Alfred",
+          "last_name"=>"Alien"
+        }
       }
-    } }
+    }
 
-    let(:invalid_auth) { {
-      "provider"=>"facebook",
-      "uid"=> SecureRandom.hex,
-      "info"=> {
-        "email"=>"alfred@bc",
-        "first_name"=>"Alfred"
+    let(:invalid_auth) {
+      {
+        "provider"=> "facebook",
+        "uid"=> SecureRandom.hex,
+        "info"=> {
+          "email"=> "alfred@bc",
+          "first_name"=> "Alfred"
+        }
       }
-    } }
+    }
 
     it "should successfully create a user if given valid auth data" do
       expect{User.create_from_omniauth(valid_auth)}.to change{User.count}.by(1)
