@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import Home from './components/Home';
 import OtherPage from './components/OtherPage';
 import DynamicPage from './components/DynamicPage';
 
-const App = props => {
+const App = ({ store }) => {
   return(
+    <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Home} />
@@ -14,6 +16,7 @@ const App = props => {
           <Route path='/:dynamic' component={DynamicPage} />
         </Switch>
       </BrowserRouter>
+    </Provider>
   )
 }
 
