@@ -11,11 +11,14 @@ const App = ({ store }) => {
   return(
     <Provider store={store}>
       <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/other' component={OtherPage} />
-          <Route path='/:dynamic' component={DynamicPage} />
-        </Switch>
+        <div>
+          <NavBar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/other' component={OtherPage} />
+            <Route path='/:dynamic' component={DynamicPage} />
+          </Switch>
+        </div>
       </BrowserRouter>
     </Provider>
   )

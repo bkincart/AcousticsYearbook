@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import buildProfileReducer from '../buildProfile/reducer';
+import currentUser from '../main/reducer';
 
 let rootReducer = combineReducers({
-  buildProfileReducer
+  currentUser
 })
 
 export default rootReducer;
