@@ -15,7 +15,6 @@ let fetchCurrentUser = () => {
       headers: { 'Content-Type': 'application/json' }
     })
     .then(response => {
-      debugger;
       if (response.ok) {
         return response.json();
       } else {
