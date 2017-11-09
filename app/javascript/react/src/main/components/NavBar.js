@@ -15,7 +15,7 @@ class NavBar extends Component {
       userSection = <li className="has-dropdown">
         <a href="#">My picture!</a>
         <ul className="dropdown">
-          <li><a href="#">My Profile</a></li>
+          <li><a href={`/users/${this.props.id}`}>My Profile</a></li>
           <li className="active"><a href="#">Upload Photos</a></li>
           <li><a href='/sign_out'>Sign Out</a></li>
         </ul>
@@ -34,19 +34,21 @@ class NavBar extends Component {
       <nav className="top-bar" data-topbar role="navigation">
         <ul className="title-area">
           <li className="name">
-            <h1><a href="#"><img src='https://static.wixstatic.com/media/3ffd19_dfc5722c5bb4493a8c9a76bf91090456.png/v1/fill/w_60,h_71,al_c,usm_0.66_1.00_0.01/3ffd19_dfc5722c5bb4493a8c9a76bf91090456.png'/></a></h1>
+            <h1><a href="/"><img src='https://static.wixstatic.com/media/3ffd19_dfc5722c5bb4493a8c9a76bf91090456.png/v1/fill/w_60,h_71,al_c,usm_0.66_1.00_0.01/3ffd19_dfc5722c5bb4493a8c9a76bf91090456.png'/></a></h1>
           </li>
           <li className="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
 
         <section className="top-bar-section">
           <ul className="right">
-            <li className="active"><a href="#">Right Button Active</a></li>
             { userSection }
           </ul>
 
           <ul className="left">
-            <li><a href="#">Left Nav Button</a></li>
+              <div id="searchbar">
+                <input type="text" id='search-box'/>
+                <div id="btn" className='button' onClick={console.log('clicked!')} >Search</div>
+              </div>
           </ul>
         </section>
       </nav>
