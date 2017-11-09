@@ -1,5 +1,4 @@
 const GET_CURRENT_USER_REQUEST_SUCCESS = "GET_CURRENT_USER_REQUEST_SUCCESS";
-const SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS";
 
 let getCurrentUserRequestSuccess = user => {
   return {
@@ -7,32 +6,6 @@ let getCurrentUserRequestSuccess = user => {
     user
   }
 };
-
-let signOutSuccess = () => {
-  return {
-    type: SIGN_OUT_SUCCESS
-  }
-};
-
-let signUserOut = () => {
-  return dispatch => {
-    fetch('/users/sign_out', {
-      credentials: 'same-origin',
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json'}
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        let error = new Error(`signUserOut: ${response.status} ${response.text()}`);
-        throw(error);
-      }
-    })
-    .then(data => console.log(data))
-    .catch(error => console.log(error(`Error in fetch: ${error.message}`)))
-  }
-}
 
 let fetchCurrentUser = () => {
   return dispatch => {
@@ -58,7 +31,5 @@ let fetchCurrentUser = () => {
 
 export {
   GET_CURRENT_USER_REQUEST_SUCCESS,
-  SIGN_OUT_SUCCESS,
-  fetchCurrentUser,
-  signUserOut
+  fetchCurrentUser
 };

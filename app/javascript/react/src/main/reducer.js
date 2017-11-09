@@ -1,4 +1,4 @@
-import { GET_CURRENT_USER_REQUEST_SUCCESS, SIGN_OUT_SUCCESS } from './actions.js'
+import { GET_CURRENT_USER_REQUEST_SUCCESS } from './actions.js'
 
 const initialState = {
   id: null,
@@ -16,8 +16,6 @@ let currentUser = (state = initialState, action) => {
         firstName: action.user.first_name,
         lastName: action.user.last_name
       })
-    case SIGN_OUT_SUCCESS:
-      return Object.assign({}, state, initialState)
     default:
       return state;
   }
