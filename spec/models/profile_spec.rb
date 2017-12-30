@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Profile, type: :model do
   it { should have_valid(:graduation_year).when('1993', '2011') }
   it { should_not have_valid(:graduation_year).when('1992', '95', '', nil) }

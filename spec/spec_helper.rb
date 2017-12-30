@@ -1,4 +1,5 @@
 require 'coveralls'
+require 'rails_helper'
 Coveralls.wear!('rails')
 
 RSpec.configure do |config|

@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017203733) do
+ActiveRecord::Schema.define(version: 20171230042056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "industries", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer "graduation_year", null: false
@@ -32,11 +38,9 @@ ActiveRecord::Schema.define(version: 20171017203733) do
     t.string "solos"
     t.string "hometown"
     t.string "family"
-    t.bigint "location_id"
     t.bigint "industry_id"
     t.bigint "user_id"
     t.index ["industry_id"], name: "index_profiles_on_industry_id"
-    t.index ["location_id"], name: "index_profiles_on_location_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
