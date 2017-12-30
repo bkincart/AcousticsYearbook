@@ -1,19 +1,16 @@
 class Api::V1::ProfilesController < ApplicationController
-  def index
-    render json: current_user
-  end
-
   def create
     @profile = Profile.new(profile_params)
     @profile.user = current_user
 
-    if create_industry
-      industry = Industry.create(name: params[:new_industry])
-    else
+    if params[:profile][:industry_id]
       industry = Industry.find(params[:industry_id])
+    else
+      industry = Industry.create(name: params[:profile][:new_industry])
     end
 
     @profile.industry = industry
+
     if @profile.save
       render json: @profile, status: :created
     else
@@ -24,6 +21,6 @@ class Api::V1::ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:address, :audition_song, :blurb, :city, :email_visible, :family, :graduation_year, :high_school, :hometown, :last_name_bc, :location_id, :major, :occupation, :phone, :solos, :state, :zip)
+    params.require(:profile).permit(:address, :audition_song, :blurb, :city, :email_visible, :family, :graduation_year, :high_school, :hometown, :last_name_bc, :major, :occupation, :phone, :solos, :state, :zip)
   end
 end

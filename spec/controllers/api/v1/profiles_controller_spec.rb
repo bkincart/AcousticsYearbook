@@ -8,37 +8,24 @@ RSpec.describe Api::V1::ProfilesController, type: :controller do
     sign_in user
   }
 
-  describe "GET #show" do
-    let(:user) { create :user }
-    it "shows the information for the current user" do
-      get :index
-
-      expect(response.status).to eq 200
-      expect(parsed_response["user"]["id"]).to eq user.id
-      expect(parsed_response["user"]["email"]).to eq user.email
-      expect(parsed_response["user"]["first_name"]).to eq user.first_name
-      expect(parsed_response["user"]["last_name"]).to eq user.last_name
-    end
-  end
-
   describe "POST #create" do
     let(:user) { create :user }
 
-    let(:payload) {
-      {
+    it "successfully creates a profile for the user when given all necessary information" do
+      valid_payload = {
         profile: {
           address: '42 Wallaby Way',
           audition_song: 'Killing Me Softly',
           blurb: 'Always singer, now developer',
           city: 'Boston',
+          inventory_id: nil,
+          new_industry: 'Software Development',
           email_visible: true,
           family: 'Father Neenan',
           graduation_year: 2011,
           high_school: 'BC High',
           hometown: 'Seattle',
-          industry_id: 2,
           last_name_bc: 'Natchez',
-          location_id: 5,
           major: 'Music',
           occupation: 'Software Developer',
           phone: '867-5309',
@@ -47,10 +34,31 @@ RSpec.describe Api::V1::ProfilesController, type: :controller do
           zip: '02467'
         }
       }
-    }
 
-    it "successfully creates a profile for the user" do
-      post :create, params: payload
+      post :create, params: valid_payload
+
+      expect(response.status).to eq 201
+      expect(parsed_response["user_id"]).to eq user.id
+      expect(parsed_response["blurb"]).to eq valid_payload[:profile][:blurb]
+    end
+
+    it "returns an error when required info isn't provided" do
+      incomplete_payload = {
+        profile: {
+          inventory_id: nil,
+          new_industry: 'Software Development',
+          phone: '867-5309',
+          zip: '2467'
+        }
+      }
+      post :create, params: incomplete_payload
+
+      expect(response.status).to eq 422
+      expect(parsed_response["error"]).to include "Graduation year can't be blank"
+      expect(parsed_response["error"]).to include "Graduation year is not a number"
+      expect(parsed_response["error"]).to include "Major can't be blank"
+      expect(parsed_response["error"]).to include "Occupation can't be blank"
+      expect(parsed_response["error"]).to include "Zip is the wrong length (should be 5 characters)"
     end
   end
 end
