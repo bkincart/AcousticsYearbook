@@ -7,6 +7,8 @@ import OtherPage from './main/components/OtherPage';
 import DynamicPage from './main/components/DynamicPage';
 import NavBar from './main/components/NavBar';
 
+import CreateProfileFormContainer from './createProfile/containers/CreateProfileFormContainer'
+
 const App = ({ store }) => {
   return(
     <Provider store={store}>
@@ -16,6 +18,7 @@ const App = ({ store }) => {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/other' component={OtherPage} />
+            <Route path='/profiles/new' component={CreateProfileFormContainer} />
             <Route path='/:dynamic' component={DynamicPage} />
           </Switch>
         </div>
