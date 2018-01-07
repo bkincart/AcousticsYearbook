@@ -1,14 +1,20 @@
+import {
+  REDIRECT_TO_PROFILE_PAGE
+} from './actions'
+
 const initialState = {
-  status: 'loading'
+  redirectToProfile: false
 }
 
-const buildProfileReducer = (state = initialState, action) => {
+const profiles = (state = initialState, action) => {
   switch(action.type) {
-    case 'SAMPLE_TYPE':
-      return state
+    case REDIRECT_TO_PROFILE_PAGE:
+      return Object.assign({}, state, {
+        redirectToProfile: true
+      })
     default:
       return state;
   }
 }
 
-export default buildProfileReducer;
+export default profiles;
