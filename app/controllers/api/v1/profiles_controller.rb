@@ -1,10 +1,12 @@
-class Api::V1::ProfilesController < ApplicationController
+class Api::V1::ProfilesController < ApiController
+  skip_before_action :verify_authenticity_token, only: :create
+
   def create
     @profile = Profile.new(profile_params)
     @profile.user = current_user
 
     if params[:profile][:industry_id]
-      industry = Industry.find(params[:industry_id])
+      industry = Industry.find(params[:profile][:industry_id])
     else
       industry = Industry.create(name: params[:profile][:new_industry])
     end
@@ -21,6 +23,6 @@ class Api::V1::ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:address, :audition_song, :blurb, :city, :email_visible, :family, :graduation_year, :high_school, :hometown, :last_name_bc, :major, :occupation, :phone, :solos, :state, :zip)
+    params.require(:profile).permit(:address, :audition_song, :blurb, :city, :country, :email_hidden, :family, :graduation_year, :high_school, :hometown, :last_name_bc, :major, :occupation, :phone, :solos, :state, :zip)
   end
 end
