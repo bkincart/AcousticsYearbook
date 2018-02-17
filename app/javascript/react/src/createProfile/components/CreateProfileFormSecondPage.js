@@ -1,22 +1,21 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-
+import validate from './validate';
 import InputField from '../../sharedResources/components/InputField';
 import SelectDropdownField from '../../sharedResources/components/SelectDropdownField';
 import stateArray from '../constants/stateArray'
 import TextareaField from '../../sharedResources/components/TextareaField';
-import validate from './validate';
 
 const CreateProfileFormSecondPage = props => {
-  // debugger;
   let optionArray = [
     {
       id: 1,
       name: 'test option'
     }
   ]
+  const { handleSubmit, previousPage } = props;
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Field
         component={InputField}
         id="occupation"
@@ -27,10 +26,10 @@ const CreateProfileFormSecondPage = props => {
       />
       <Field
         component={SelectDropdownField}
-        id="industry"
-        key="industry"
+        id="industry-id"
+        key="industry-id"
         label="Industry *"
-        name="industry"
+        name="industryId"
         optionArray={optionArray}
       />
       <Field
@@ -45,7 +44,7 @@ const CreateProfileFormSecondPage = props => {
         id="high-school"
         key="high-school"
         label="High School"
-        name="high-school"
+        name="highSchool"
         type="text"
       />
       <Field
@@ -65,18 +64,18 @@ const CreateProfileFormSecondPage = props => {
         type="text"
       />
       <div>
-        <button type="button" className="previous" onClick={props.previousPage}>
+        <button type="button" className="previous" onClick={previousPage}>
           Previous
         </button>
         <button type="submit" className="next">Next</button>
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'createProfile',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  validate
+  validate,
 })(CreateProfileFormSecondPage);

@@ -1,4 +1,5 @@
 import { SubmissionError } from 'redux-form';
+import humps from 'humps';
 
 const POST_PROFILE_REQUEST = 'POST_PROFILE_REQUEST';
 const POST_PROFILE_REQUEST_SUCCESS = 'POST_PROFILE_REQUEST_SUCCESS';
@@ -24,13 +25,20 @@ const redirectToProfilePage = () => {
 }
 
 let postProfile = profileFormPayload => {
+  let decamelizedProfile = humps.decamelizeKeys(profileFormPayload)
+  let body = JSON.stringify({
+    profile: decamelizedProfile
+  })
   return dispatch => {
     dispatch(postProfileRequest())
     return fetch('/api/v1/profiles',
     {
       method: 'POST',
       credentials: 'same-origin',
-      body: JSON.stringify(profileFormPayload)
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body
     })
     .then(response => {
       if(response.status === 500) {

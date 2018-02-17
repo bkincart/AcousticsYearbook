@@ -1,14 +1,14 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-
+import validate from './validate';
 import InputField from '../../sharedResources/components/InputField';
 import SelectStateDropdownField from './SelectStateDropdownField';
 import stateArray from '../constants/stateArray'
-import validate from './validate';
 
 const CreateProfileFormFirstPage = props => {
+  const { handleSubmit } = props;
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Field
         component={InputField}
         id="address"
@@ -65,14 +65,16 @@ const CreateProfileFormFirstPage = props => {
         name="emailHidden"
         type="checkbox"
       />
-      <button type="submit" className="next">Next</button>
+      <div>
+        <button type="submit" className="next">Next</button>
+      </div>
     </form>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'createProfile',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  validate
+  validate,
 })(CreateProfileFormFirstPage);

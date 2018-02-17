@@ -3,11 +3,11 @@ const validate = values => {
   if (!values.occupation) {
     errors.occupation = 'Please enter your occupation'
   }
-  if (!values.industry) {
-    errors.industry = 'Please select an industry'
+  if (!values.industryId) {
+    errors.industryId = 'Please select an industry'
   }
-  if (!values.gradYear) {
-    errors.gradYear = 'Please enter a graduation year'
+  if (!values.graduationYear) {
+    errors.graduationYear = 'Please enter a graduation year'
   }
   if (!values.major) {
     errors.major = 'Please enter your major'
