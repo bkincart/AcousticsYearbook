@@ -9,7 +9,7 @@ RSpec.describe Profile, type: :model do
   it { should_not have_valid(:occupation).when('', nil) }
 
   it { should have_valid(:zip).when('02718', '91628') }
-  it { should_not have_valid(:zip).when('', nil) }
+  it { should_not have_valid(:zip).when('this is not a zip code!') }
 
   it { should have_valid(:phone).when('123-867-5039', '5551927') }
 end
