@@ -7,7 +7,7 @@ import CreateProfileFormPage2 from '../components/CreateProfileFormPage2';
 import CreateProfileFormPage3 from '../components/CreateProfileFormPage3';
 import CreateProfileFormPage4 from '../components/CreateProfileFormPage4';
 
-import { postProfile } from '../actions'
+import { postProfile } from '../actions/postProfile'
 
 class CreateProfileFormContainer extends Component {
   constructor(props) {
