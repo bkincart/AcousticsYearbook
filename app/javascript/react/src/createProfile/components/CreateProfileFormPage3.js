@@ -6,7 +6,7 @@ import SelectDropdownField from '../../sharedResources/components/SelectDropdown
 import stateArray from '../constants/stateArray'
 import TextareaField from '../../sharedResources/components/TextareaField';
 
-const CreateProfileFormSecondPage = props => {
+const CreateProfileFormPage3 = props => {
   let optionArray = [
     {
       id: 1,
@@ -78,4 +78,4 @@ export default reduxForm({
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate,
-})(CreateProfileFormSecondPage);
+})(CreateProfileFormPage3);

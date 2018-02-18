@@ -4,7 +4,7 @@ import validate from './validate';
 
 import InputField from '../../sharedResources/components/InputField';
 
-const CreateProfileFormThirdPage = props => {
+const CreateProfileFormPage4 = props => {
   const { handleSubmit, pristine, previousPage, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -62,4 +62,4 @@ export default reduxForm({
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate,
-})(CreateProfileFormThirdPage);
+})(CreateProfileFormPage4);

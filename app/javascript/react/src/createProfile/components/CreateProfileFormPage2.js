@@ -5,7 +5,7 @@ import InputField from '../../sharedResources/components/InputField';
 import SelectStateDropdownField from './SelectStateDropdownField';
 import stateArray from '../constants/stateArray'
 
-const CreateProfileFormFirstPage = props => {
+const CreateProfileFormPage2 = props => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -77,4 +77,4 @@ export default reduxForm({
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate,
-})(CreateProfileFormFirstPage);
+})(CreateProfileFormPage2);

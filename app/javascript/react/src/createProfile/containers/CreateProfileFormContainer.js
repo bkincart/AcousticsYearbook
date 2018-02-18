@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import CreateProfileFormFirstPage from '../components/CreateProfileFormFirstPage';
-import CreateProfileFormSecondPage from '../components/CreateProfileFormSecondPage';
-import CreateProfileFormThirdPage from '../components/CreateProfileFormThirdPage';
+import CreateProfileFormPage2 from '../components/CreateProfileFormPage2';
+import CreateProfileFormPage3 from '../components/CreateProfileFormPage3';
+import CreateProfileFormPage4 from '../components/CreateProfileFormPage4';
 
 import { postProfile } from '../actions'
 
@@ -46,14 +46,14 @@ class CreateProfileFormContainer extends Component {
 
     return (
       <div>
-        {page === 1 && <CreateProfileFormFirstPage initialValues={initialValues} onSubmit={this.nextPage} />}
+        {page === 1 && <CreateProfileFormPage2 initialValues={initialValues} onSubmit={this.nextPage} />}
         {page === 2 &&
-          <CreateProfileFormSecondPage
+          <CreateProfileFormPage3
             previousPage={this.previousPage}
             onSubmit={this.nextPage}
           />}
         {page === 3 &&
-          <CreateProfileFormThirdPage
+          <CreateProfileFormPage4
             previousPage={this.previousPage}
             onSubmit={this.handleSubmit}
           />}
