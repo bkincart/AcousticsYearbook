@@ -1,6 +1,6 @@
 import {
   REDIRECT_TO_PROFILE_PAGE
-} from './actions'
+} from './actions/postProfile'
 
 const initialState = {
   redirectToProfile: false
