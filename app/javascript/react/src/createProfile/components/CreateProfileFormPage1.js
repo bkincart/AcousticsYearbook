@@ -1,7 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+
 import validate from './validate';
 import InputField from '../../sharedResources/components/InputField';
+import FileDropField from '../../sharedResources/components/FileDropField';
+
 
 const CreateProfileFormPage1 = props => {
   const { handleSubmit } = props;
@@ -10,12 +13,9 @@ const CreateProfileFormPage1 = props => {
       <h2>Add a Profile Picture</h2>
       <form onSubmit={handleSubmit}>
         <Field
-          component={InputField}
-          id="testing"
-          key="testing"
-          label="Testing"
-          name="testing"
-          type="text"
+          component={FileDropField}
+          key="picture"
+          name="picture"
         />
         <div>
           <button type="submit" className="next">Next</button>
