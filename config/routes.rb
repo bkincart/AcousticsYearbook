@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, only: [:edit, :update]
   root 'home#index'
   get '*path', to: 'home#index'
 end
