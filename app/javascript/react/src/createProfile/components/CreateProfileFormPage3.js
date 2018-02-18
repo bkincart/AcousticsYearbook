@@ -1,19 +1,13 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+
 import validate from './validate';
 import InputField from '../../sharedResources/components/InputField';
 import SelectDropdownField from '../../sharedResources/components/SelectDropdownField';
-import stateArray from '../constants/stateArray'
 import TextareaField from '../../sharedResources/components/TextareaField';
 
 const CreateProfileFormPage3 = props => {
-  let optionArray = [
-    {
-      id: 1,
-      name: 'test option'
-    }
-  ]
-  const { handleSubmit, previousPage } = props;
+  const { handleSubmit, previousPage, industries } = props;
   return (
     <div>
       <h2>Current Life Information</h2>
@@ -32,7 +26,7 @@ const CreateProfileFormPage3 = props => {
           key="industry-id"
           label="Industry *"
           name="industryId"
-          optionArray={optionArray}
+          optionArray={industries}
         />
         <Field
           component={TextareaField}
