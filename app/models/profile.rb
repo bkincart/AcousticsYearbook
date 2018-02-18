@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  mount_uploader :picture, ProfilePhotoUploader
+
   belongs_to :industry
   belongs_to :user
 

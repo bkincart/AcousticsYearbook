@@ -26,18 +26,21 @@ const redirectToProfilePage = () => {
 
 let postProfile = profileFormPayload => {
   let decamelizedProfile = humps.decamelizeKeys(profileFormPayload)
-  let body = JSON.stringify({
-    profile: decamelizedProfile
+  let body = new FormData();
+  body.append('picture', profileFormPayload['picture'][0])
+
+  Object.keys(decamelizedProfile).forEach((fieldName) => {
+    if(fieldName != 'picture') {
+      body.append(fieldName, decamelizedProfile[fieldName])
+    }
   })
+
   return dispatch => {
     dispatch(postProfileRequest())
     return fetch('/api/v1/profiles',
     {
       method: 'POST',
       credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body
     })
     .then(response => {

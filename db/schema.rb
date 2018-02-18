@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107024758) do
+ActiveRecord::Schema.define(version: 20180217234010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180107024758) do
     t.string "state"
     t.string "zip"
     t.string "phone"
-    t.string "email_hidden"
+    t.boolean "email_hidden", default: false
     t.string "last_name_bc"
     t.string "blurb"
     t.string "high_school"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180107024758) do
     t.bigint "industry_id"
     t.bigint "user_id"
     t.string "country"
+    t.string "picture"
     t.index ["industry_id"], name: "index_profiles_on_industry_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end

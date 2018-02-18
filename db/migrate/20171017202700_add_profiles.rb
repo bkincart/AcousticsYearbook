@@ -10,7 +10,7 @@ class AddProfiles < ActiveRecord::Migration[5.1]
       t.string :state
       t.string :zip
       t.string :phone
-      t.string :email_visible
+      t.boolean :email_hidden, default: false
       t.string :last_name_bc
       t.string :blurb
       t.string :high_school
