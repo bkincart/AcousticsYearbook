@@ -2,23 +2,21 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 
 const FileDropField = ({ input, meta: { touched, error }, name }) => {
-  const fileArray = input.value;
+  const file = input.value;
 
   const onDrop = (file, event) => {
     input.onChange(file)
   }
 
-  let fileList, files;
+  let fileList;
 
-  if(fileArray) {
-    files = fileArray.map((file, i) => {
-      return(<li key={i}>{file.name}</li>)
-    })
-
+  if(file) {
     fileList =
       <div>
-        <h4>Dropped Files:</h4>
-        <ul> { files } </ul>
+        <h4>Dropped File:</h4>
+        <ul>
+          <li>{file[0].name}</li>
+        </ul>
       </div>
   }
 
