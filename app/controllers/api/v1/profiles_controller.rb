@@ -12,6 +12,7 @@ class Api::V1::ProfilesController < ApplicationController
     end
 
     @profile.industry = industry
+    
     if @profile.save
       render json: @profile, status: :created
     else
