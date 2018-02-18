@@ -12,6 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'active_model_serializers'
 gem 'foundation-rails'
+gem "carrierwave"
+gem "fog"
 
 group :development do
   gem 'listen', '~> 3.0.5'
@@ -21,6 +23,7 @@ end
 
 group :development, :test do
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'launchy', require: false
   gem 'pry-rails'
