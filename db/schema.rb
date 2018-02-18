@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180217234010) do
     t.string "state"
     t.string "zip"
     t.string "phone"
-    t.string "email_hidden"
+    t.boolean "email_hidden", default: false
     t.string "last_name_bc"
     t.string "blurb"
     t.string "high_school"

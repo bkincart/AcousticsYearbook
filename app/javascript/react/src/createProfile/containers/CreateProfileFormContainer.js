@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
+import CreateProfileFormPage1 from '../components/CreateProfileFormPage1';
 import CreateProfileFormPage2 from '../components/CreateProfileFormPage2';
 import CreateProfileFormPage3 from '../components/CreateProfileFormPage3';
 import CreateProfileFormPage4 from '../components/CreateProfileFormPage4';
@@ -35,9 +36,6 @@ class CreateProfileFormContainer extends Component {
   render() {
     const { page } = this.state;
 
-    const initialValues = {
-      emailHidden: false
-    }
     if(this.props.redirectToProfile) {
       return(
         <Redirect to="/profiles/1" />
@@ -46,17 +44,29 @@ class CreateProfileFormContainer extends Component {
 
     return (
       <div>
-        {page === 1 && <CreateProfileFormPage2 initialValues={initialValues} onSubmit={this.nextPage} />}
+        {page === 1 &&
+          <CreateProfileFormPage1
+            onSubmit={this.nextPage}
+          />
+        }
         {page === 2 &&
+          <CreateProfileFormPage2
+            previousPage={this.previousPage}
+            onSubmit={this.nextPage}
+          />
+        }
+        {page === 3 &&
           <CreateProfileFormPage3
             previousPage={this.previousPage}
             onSubmit={this.nextPage}
-          />}
-        {page === 3 &&
+          />
+        }
+        {page === 4 &&
           <CreateProfileFormPage4
             previousPage={this.previousPage}
             onSubmit={this.handleSubmit}
-          />}
+          />
+        }
       </div>
     );
   }
