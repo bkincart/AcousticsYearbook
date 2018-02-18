@@ -7,7 +7,8 @@ import CreateProfileFormPage2 from '../components/CreateProfileFormPage2';
 import CreateProfileFormPage3 from '../components/CreateProfileFormPage3';
 import CreateProfileFormPage4 from '../components/CreateProfileFormPage4';
 
-import { postProfile } from '../actions'
+import { getIndustries } from '../actions/getIndustries'
+import { postProfile } from '../actions/postProfile'
 
 class CreateProfileFormContainer extends Component {
   constructor(props) {
@@ -33,6 +34,10 @@ class CreateProfileFormContainer extends Component {
     this.props.onSubmit(values);
   };
 
+  componentDidMount() {
+    this.props.getIndustries()
+  }
+
   render() {
     const { page } = this.state;
 
@@ -57,6 +62,7 @@ class CreateProfileFormContainer extends Component {
         }
         {page === 3 &&
           <CreateProfileFormPage3
+            industries={this.props.industries}
             previousPage={this.previousPage}
             onSubmit={this.nextPage}
           />
@@ -74,12 +80,14 @@ class CreateProfileFormContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    industries: state.profiles.industries,
     redirectToProfile: state.profiles.redirectToProfile
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getIndustries: () => { dispatch(getIndustries()) },
     onSubmit: (formFields) => { dispatch(postProfile(formFields)) }
   }
 }

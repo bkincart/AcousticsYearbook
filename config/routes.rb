@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :current_user, only: :index
       resources :profiles, only: [:index, :create]
+      resources :industries, only: :index
     end
   end
 
