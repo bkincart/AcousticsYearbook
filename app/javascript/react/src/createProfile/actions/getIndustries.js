@@ -1,5 +1,5 @@
 const GET_INDUSTRIES_REQUEST = 'GET_INDUSTRIES_REQUEST';
-export const GET_INDUSTRIES_REQUEST_SUCCESS = 'GET_INDUSTRIES_REQUEST_SUCCESS';
+const GET_INDUSTRIES_REQUEST_SUCCESS = 'GET_INDUSTRIES_REQUEST_SUCCESS';
 const GET_INDUSTRIES_REQUEST_FAILURE = 'GET_INDUSTRIES_REQUEST_FAILURE';
 
 const getIndustriesRequest = () => {
@@ -31,7 +31,7 @@ let getIndustries = () => {
       if(response.ok) {
         return response.json();
       } else {
-        let error = new Error(`getIndustries: ${status} (${statusText})`)
+        let error = new Error(`Error in fetch getIndustries: ${status} (${statusText})`)
         throw(error);
       }
     })
@@ -45,5 +45,6 @@ let getIndustries = () => {
 }
 
 export {
-  getIndustries
+  getIndustries,
+  GET_INDUSTRIES_REQUEST_SUCCESS
 };
