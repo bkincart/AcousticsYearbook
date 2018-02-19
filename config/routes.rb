@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :current_user, only: :index
       resources :profiles, only: [:index, :create]
       resources :industries, only: :index
+      resources :school_years, only: :index
     end
   end
 
