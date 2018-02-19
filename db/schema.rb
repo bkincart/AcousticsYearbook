@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180217234010) do
+ActiveRecord::Schema.define(version: 20180219033930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20180217234010) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "file", null: false
+    t.string "caption"
+    t.bigint "school_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_year_id"], name: "index_photos_on_school_year_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -44,6 +53,12 @@ ActiveRecord::Schema.define(version: 20180217234010) do
     t.string "picture"
     t.index ["industry_id"], name: "index_profiles_on_industry_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "school_years", force: :cascade do |t|
+    t.string "year_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
