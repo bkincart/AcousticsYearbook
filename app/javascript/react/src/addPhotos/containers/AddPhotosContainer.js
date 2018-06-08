@@ -9,7 +9,9 @@ class AddPhotosContainer extends Component {
     super(props)
     this.state = {
       files: [],
-      schoolYear: ""
+      schoolYear: "",
+      errors: null,
+      successMessage: null
     }
 
     this.handleYearChange = this.handleYearChange.bind(this);
@@ -29,7 +31,44 @@ class AddPhotosContainer extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    let body = new FormData();
+    body.append('year_id', this.state.schoolYear)
+
+    this.state.files.forEach(function(photo, i) {
+      body.append(`photo${i + 1}`, photo)
+    })
+
+    fetch('/api/v1/photos',
+      {
+        method: 'POST',
+        credentials: 'same-origin',
+        body
+      }
+    )
+    .then(response => {
+      debugger;
+      if(response.status === 500) {
+        throw('Server Error.')
+      } else {
+        return response.json();
+      }
+    })
+    .then(data => {
+      debugger;
+      if(data.errors) {
+        this.setState({
+          successMessage: null,
+          errors: data.errors
+        })
+      } else if(data.message){
+        this.setState({
+          errors: null,
+          successMessage: data.message,
+          files: [],
+          schoolYear: ""
+        })
+      }
+    })
   }
 
   componentDidMount() {
@@ -37,7 +76,7 @@ class AddPhotosContainer extends Component {
   }
 
   render() {
-    let fileList, files;
+    let fileList, files, messageDiv;
     if(this.state.files.length > 0) {
       files = this.state.files.map((file, i) => {
         return(<li key={i}>{file.name}</li>)
@@ -50,6 +89,24 @@ class AddPhotosContainer extends Component {
         </div>
     }
 
+    if(this.state.successMessage) {
+      messageDiv =
+        <div>
+          <p>{this.state.successMessage}</p>
+        </div>
+    } else if(this.state.errors) {
+      let errorList = this.state.errors.map((error) => {
+        <li>{error}</li>
+      })
+
+      messageDiv =
+        <div>
+          <ul>
+            {errorList}
+          </ul>
+        </div>
+    }
+
     const placeholder = [{id: "", year_name: "Optionally select a school year"}]
     let schoolYears = placeholder.concat(this.props.schoolYears);
     let options = schoolYears.map((schoolYear) => {
@@ -58,6 +115,7 @@ class AddPhotosContainer extends Component {
 
     return(
       <div>
+        {messageDiv}
         <h2>Add Photos</h2>
         <form onSubmit={this.handleSubmit}>
           <Dropzone onDrop={(files) => this.onDrop(files)}>
@@ -76,7 +134,9 @@ class AddPhotosContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    schoolYears: state.photos.schoolYears
+    schoolYears: state.photos.schoolYears,
+    successMessage: state.photos.successMessage,
+    errors: state.photos.errors
   }
 }
 

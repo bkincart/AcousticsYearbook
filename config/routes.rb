@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :current_user, only: :index
-      resources :profiles, only: [:index, :create]
       resources :industries, only: :index
+      resources :photos, only: [:create]
+      resources :profiles, only: [:index, :create]
       resources :school_years, only: :index
     end
   end
