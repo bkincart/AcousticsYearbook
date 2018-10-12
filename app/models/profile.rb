@@ -10,4 +10,6 @@ class Profile < ApplicationRecord
     numericality: { only_integer: true },
     length: { is: 5 },
     allow_blank: true
+
+  validates_uniqueness_of :graduation_year
 end
